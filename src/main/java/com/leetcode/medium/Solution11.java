@@ -10,7 +10,7 @@ package com.leetcode.medium;
  * @author 阮雪峰
  * @date 2018/4/27 13:51
  */
-public class Solution10 {
+public class Solution11 {
     public static void main(String[] args) {
         int[] a = {5, 3, 6, 4, 36, 9, 1, 45, 8};
 //        int[] a = {1, 1};
