@@ -2,6 +2,9 @@ package com.leetcode.medium;
 
 import com.leetcode.common.ListNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *  给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
  *
@@ -23,6 +26,7 @@ public class Solution24 {
         node.next.next = new ListNode(3);
         node.next.next.next = new ListNode(4);
         node.next.next.next.next = new ListNode(5);
+        node.next.next.next.next.next = new ListNode(6);
 
         ListNode result = swapPairs(node);
         while (result != null) {
@@ -32,31 +36,42 @@ public class Solution24 {
     }
 
     public static ListNode swapPairs(ListNode head) {
-        ListNode node = head, temp;
-        int j = 1;
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode node = head;
+        //奇
+        List<ListNode> list1 = new ArrayList<>();
+        //偶
+        List<ListNode> list2 = new ArrayList<>();
+        int i = 1;
         while (node != null) {
-            if (j == 1) {
-                if (head.next != null) {
-                    ListNode node1 = head;
-                    ListNode node2 = head.next;
-                    ListNode node3 = node2.next;
-
-                    node2.next = null;
-                    head = node2;
-                    node2.next = node1;
-                    node1.next = node3;
-
-                    node = node3;
-                }
+            if (i % 2 == 1) {
+                list1.add(node);
             } else {
-                ListNode next = node.next;
-                ListNode node1 = next.next;
-
-                next.next = node;
-                node.next = node1;
-                j++;
+                list2.add(node);
             }
-
+            node = node.next;
+            i++;
+        }
+        i = 0;
+        while (i < list2.size()) {
+            if (i == 0) {
+                head = list2.get(0);
+            }
+            node = list2.get(i);
+            node.next = list1.get(i);
+            ListNode nextNode = null;
+            if (i + 1 < list2.size()) {
+                nextNode = list2.get(i + 1);
+                node.next.next = node = nextNode;
+            }
+            i++;
+        }
+        if (list1.size() > list2.size()) {
+            node.next.next = list1.get(list1.size() - 1);
+        } else {
+            node.next.next = null;
         }
         return head;
     }
