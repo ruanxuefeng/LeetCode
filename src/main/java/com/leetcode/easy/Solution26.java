@@ -46,28 +46,30 @@ public class Solution26 {
 //        int[] nums = {0, 1, 2, 2, 3, 0, 4, 2};
 //        int[] nums = {1, 1};
         System.out.println(removeDuplicates(nums));
+        for (int num : nums) {
+            System.out.println(num);
+        }
     }
 
 
     public static int removeDuplicates(int[] nums) {
-        int length = 0, i = 1, j = nums.length - 1;
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int length = 1, i = 1, j = 1;
         int val = nums[0];
         while (i < nums.length) {
-            if (nums[i] == val) {
-                while (j >= 0 && nums[j] == val) {
-                    j--;
-                }
-                if (j <= i) {
-                    length = j + 1;
-                    break;
-                }
-                int a = nums[i];
+            if (val == nums[i]) {
+                i++;
+            }else{
+                int temp = nums[i];
                 nums[i] = nums[j];
-                nums[j] = a;
-            } else {
+                nums[j] = temp;
+                j++;
+                i++;
                 length++;
+                val = temp;
             }
-            i++;
         }
         return length;
     }
