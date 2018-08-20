@@ -25,8 +25,8 @@ import java.util.Arrays;
 public class Solution66 {
 
     public static void main(String[] args) {
-        int[] digits = {9};
-//        int[] digits = {1,2,3};
+//        int[] digits = {9,9};
+        int[] digits = {1,2,3};
         int[] a = plusOne(digits);
         for (int i : a) {
             System.out.println(i);
@@ -46,7 +46,7 @@ public class Solution66 {
         }
         if (j == 1) {
             int[] digits1 = Arrays.copyOf(digits, digits.length + 1);
-            digits1[digits1.length - 1] = j;
+            digits1[0] = j;
             return digits1;
         }else {
             return digits;
