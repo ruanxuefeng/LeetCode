@@ -22,30 +22,29 @@ import java.util.List;
  */
 public class Solution119 {
     public static void main(String[] args) {
-        System.out.println(getNum(10, 4));
+        System.out.println(getRow(2));
     }
 
     public static List<Integer> getRow(int rowIndex) {
-        if (rowIndex <= 0) {
-            return new ArrayList<>();
-        }
-        List<Integer> list = new ArrayList<>(rowIndex);
-        int a = 1, b = rowIndex;
-        for (int i = 1; i <= (rowIndex % 2 == 0 ? rowIndex / 2 : (rowIndex + 1) / 2); i++) {
-            if (i == 1) {
-                list.add(a, 1);
-                list.add(b, 1);
-            } else if (i == 2) {
-                list.add(a, b);
-                list.add(b, b);
-            } else {
+        List<List<Integer>> lists = new ArrayList<>(rowIndex);
+        List<Integer> list = new ArrayList<>(1);
+        list.add(1);
+        lists.add(list);
+        for (int i = 2; i <= rowIndex+1; i++) {
+            list = new ArrayList<>(i);
+            for (int j = 0; j < i; j++) {
+                if (j == 0 || j == (i - 1)) {
+                    list.add(1);
+                }else{
+                    int a = lists.get(i - 2).get(j - 1);
+                    int b = lists.get(i - 2).get(j);
+                    list.add(a + b);
+                }
 
             }
-
-            a++;
-            b--;
+            lists.add(list);
         }
-        return list;
+        return lists.get(rowIndex);
     }
 
     private static int getNum(int length, int index) {
