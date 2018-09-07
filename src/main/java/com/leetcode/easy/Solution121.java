@@ -24,7 +24,7 @@ package com.leetcode.easy;
 public class Solution121 {
 
     public static void main(String[] args) {
-        int[] arr = {7,1,5,3,6,4};
+        int[] arr = {7, 1, 5, 3, 6, 4};
 //        int[] arr = {7, 6, 4, 3, 1};
         System.out.println(maxProfit(arr));
     }
@@ -36,7 +36,7 @@ public class Solution121 {
      */
     public static int maxProfit(int[] prices) {
         int result = 0;
-        for (int i = 0; i < prices.length-1; i++) {
+        for (int i = 0; i < prices.length - 1; i++) {
             for (int j = i + 1; j < prices.length; j++) {
                 if (prices[j] > prices[i]) {
                     result = Math.max(result, prices[j] - prices[i]);
@@ -53,18 +53,18 @@ public class Solution121 {
      * @return
      */
     public int maxProfit1(int[] prices) {
-        if(prices.length==0){
+        if (prices.length == 0) {
             return 0;
         }
-        int minPrice=prices[0];
-        int maxGap=0;
+        int minPrice = prices[0];
+        int maxGap = 0;
 
-        for(int i=1;i<prices.length;i++){
-            if(prices[i]-minPrice>maxGap){
-                maxGap=prices[i]-minPrice;
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] - minPrice > maxGap) {
+                maxGap = prices[i] - minPrice;
             }
-            if(prices[i]<minPrice){
-                minPrice=prices[i];
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
             }
         }
 
