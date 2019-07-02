@@ -3,7 +3,7 @@ package com.leetcode.common;
 import java.util.ArrayList;
 import java.util.List;
 
-class ThreeNum {
+public class ThreeNum {
     int a;
     int b;
     int c;
